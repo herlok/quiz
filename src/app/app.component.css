@@ -1,0 +1,29 @@
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+.content {
+  display: flex;
+  margin: 70px 0px;
+  padding: 0 16px;
+  max-width: 960px;
+}
+
+.welcome {
+  font-size: 32px;
+}
+.enternameForm {
+  width: 100%;
+  height: 100%;
+  padding: 5px 0;
+  text-align: center;
+}

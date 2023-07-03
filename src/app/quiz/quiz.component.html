@@ -1,0 +1,25 @@
+<h2>Quiz</h2>
+<p>Welcome, {{ name }}</p>
+
+<ng-container *ngIf="quizQuestions.length > 0; else loadingTemplate">
+  <form (ngSubmit)="onSubmit()" *ngIf="score === null">
+    <div *ngFor="let question of quizQuestions; let i = index">
+      <p>{{ question.question }}</p>
+      <div *ngFor="let answer of question.answers; let j = index">
+        <input type="radio" name="question{{ i }}" [id]="'question' + i + 'answer' + j" [value]="answer"
+          [(ngModel)]="question.selectedAnswer" required>
+        <label [for]="'question' + i + 'answer' + j">{{ answer }}</label>
+      </div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div *ngIf="score !== null">
+    <h3>Quiz Results</h3>
+    <p>Score: {{ score }} / {{ quizQuestions.length }}</p>
+  </div>
+</ng-container>
+
+<ng-template #loadingTemplate>
+  <p>Loading questions...</p>
+</ng-template>

@@ -1,0 +1,17 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner" id="toolbar" *ngIf="page === '/'">
+  <form class="enternameForm">
+    <span class="welcome">Welcome to Quiz night app</span><br><br>
+    <span>Please enter your name:</span>
+    <input name="name" id="name" type="text" placeholder="Enter name">
+    <input type="submit" value="Submit" (click)="nameSubmit()">
+  </form>
+</div>
+
+<div class="content" role="main">
+  <app-menu *ngIf="page === '/menu'"></app-menu>
+  <app-quiz *ngIf="page === '/quiz'"></app-quiz>
+</div>
+
+
+ 
