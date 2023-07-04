@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class QuizService {
   private apiUrl = 'https://opentdb.com/api.php';
-
   constructor(private http: HttpClient) {}
 
   getQuizQuestions(): Observable<any> {
-    const url = `${this.apiUrl}?amount=5&difficulty=easy&type=multiple`;
+    const categoryId = localStorage.getItem('selectedCategoryId');
+    const url = `${this.apiUrl}?amount=5&category=${categoryId}&type=multiple`;
     return this.http.get(url);
   }
 }

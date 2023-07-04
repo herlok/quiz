@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { Router } from '@angular/router';
 
 interface QuizQuestion {
   question: string;
@@ -19,7 +20,7 @@ export class QuizComponent implements OnInit {
   name: string | null = '';
   score: number | null = null;
 
-  constructor(private quizService: QuizService) {}
+  constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name');
@@ -63,5 +64,9 @@ export class QuizComponent implements OnInit {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  backToCategories() {
+    this.router.navigate(['/menu']);
   }
 }

@@ -5,6 +5,6 @@
   <select [(ngModel)]="selectedCategoryId">
     <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
   </select>
-  <button (click)="quizStart()">quiz start</button>
+  <button (click)="quizStart()">Start quiz</button>
 </div>
  

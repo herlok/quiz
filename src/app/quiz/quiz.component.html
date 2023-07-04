@@ -1,5 +1,5 @@
 <h2>Quiz</h2>
-<p>Welcome, {{ name }}</p>
+<p>Now playing, {{ name }}</p>
 
 <ng-container *ngIf="quizQuestions.length > 0; else loadingTemplate">
   <form (ngSubmit)="onSubmit()" *ngIf="score === null">
@@ -17,6 +17,7 @@
   <div *ngIf="score !== null">
     <h3>Quiz Results</h3>
     <p>Score: {{ score }} / {{ quizQuestions.length }}</p>
+    <button (click)="backToCategories()">Go back to categories</button>
   </div>
 </ng-container>
 
