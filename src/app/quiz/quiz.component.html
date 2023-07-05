@@ -1,26 +1,27 @@
-<h2>Quiz</h2>
-<p>Now playing, {{ name }}</p>
-
-<ng-container *ngIf="quizQuestions.length > 0; else loadingTemplate">
-  <form (ngSubmit)="onSubmit()" *ngIf="score === null">
-    <div *ngFor="let question of quizQuestions; let i = index">
-      <p>{{ question.question }}</p>
-      <div *ngFor="let answer of question.answers; let j = index">
-        <input type="radio" name="question{{ i }}" [id]="'question' + i + 'answer' + j" [value]="answer"
-          [(ngModel)]="question.selectedAnswer" required>
-        <label [for]="'question' + i + 'answer' + j">{{ answer }}</label>
+<div class="container">
+  <p class="nowplaying">Now playing: {{ name }}</p>
+  <br><br>
+  <ng-container *ngIf="quizQuestions.length > 0; else loadingTemplate">
+    <form (ngSubmit)="onSubmit()" *ngIf="score === null">
+      <div *ngFor="let question of quizQuestions; let i = index">
+        <p class="question">{{ question.question }}</p>
+        <div *ngFor="let answer of question.answers; let j = index">
+          <input type="radio" name="question{{ i }}" [id]="'question' + i + 'answer' + j" [value]="answer"
+            [(ngModel)]="question.selectedAnswer" required>
+          <label [for]="'question' + i + 'answer' + j">{{ answer }}</label>
+        </div>
       </div>
+      <button type="submit" class="submitButton">Submit</button>
+    </form>
+
+    <div *ngIf="score !== null" class="quizResult">
+      <h3>Quiz Results</h3>
+      <p class="score">Score: {{ score }} / {{ quizQuestions.length }}</p>
+      <button (click)="backToCategories()" class="backToCategoriesbutton">Go back to categories</button>
     </div>
-    <button type="submit">Submit</button>
-  </form>
+  </ng-container>
 
-  <div *ngIf="score !== null">
-    <h3>Quiz Results</h3>
-    <p>Score: {{ score }} / {{ quizQuestions.length }}</p>
-    <button (click)="backToCategories()">Go back to categories</button>
-  </div>
-</ng-container>
-
-<ng-template #loadingTemplate>
-  <p>Loading questions...</p>
-</ng-template>
+  <ng-template #loadingTemplate>
+    <p>Loading questions...</p>
+  </ng-template>
+</div>

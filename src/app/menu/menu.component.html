@@ -1,10 +1,11 @@
 <div class="menu">
-  <span class="welcomeMessege">Welcome {{username}}</span>
-  <br><br>
-  <p>Select a category:</p>
-  <select [(ngModel)]="selectedCategoryId">
-    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-  </select>
-  <button (click)="quizStart()">Start quiz</button>
+  <div class="content">
+    <span class="welcomeMessege">Welcome {{username}}</span><br><br>
+    <span>Select a category:</span>
+    <select [(ngModel)]="selectedCategoryId">
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select><br>
+    <button (click)="quizStart()" class="startQuizbutton">Start quiz</button>
+  </div>
 </div>
  
