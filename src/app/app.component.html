@@ -1,7 +1,8 @@
 <div class="toolbar" role="banner" id="toolbar" *ngIf="page === '/'">
   <form class="enternameForm">
     <h1 class="welcome">Welcome to Quiz night app</h1><br><br>
-    <p>Please enter your name:</p>
+    <p style="font-size: 32px;">Please enter your name:</p>
+
     <input name="name" id="name" type="text" placeholder="Enter name" class="enterName">
     <input type="submit" value="Submit" (click)="nameSubmit()" class="nameSubmit">
   </form>

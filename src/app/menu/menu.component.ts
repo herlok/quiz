@@ -56,4 +56,7 @@ export class MenuComponent {
       alert('Please choose a category');
     }
   }
+  logout() {
+    this.router.navigate(['/']);
+  }
 }

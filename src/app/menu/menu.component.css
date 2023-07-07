@@ -1,35 +1,42 @@
 .menu {
-    position: absolute;
-    top: 3%;
-    left: 30%;
-    right: 30%;
-    bottom: 3%;
-    color: white;
-    display: block;
-    text-align: center;
-    justify-content: center;
-    background: #4621A8;
-    background: linear-gradient(135deg, #4621A8, #125DBC);
-    font-weight: 600;
-    border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
+  min-width: 20%;
+  color: white;
+  background: #4621A8;
+  background: linear-gradient(135deg, #4621A8, #125DBC);
+  font-weight: 600;
+  border-radius: 5%;
+  padding: 10px;
+  margin: auto;
+  height: 96vh;
+  max-height: 100%;
 }
 .content {
-    margin-top: 30%;
+  overflow: hidden;
+  max-width: 100%;
 }
+
 span {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    padding: 0 16px;
+  display: block;
+  max-width: 100%;
+  font-size: 32px;
 }
+
 .welcomeMessege {
-    font-size: 32px;
+    font-size: 58px;
 }
+
 select{
-    font-weight: bold;
-    background: #B9D9EB;
+  min-width: 0;
+  max-width: 100%;
+  font-weight: bold;
+  font-size: 20px;
+  background: #B9D9EB;
 }
+
 .startQuizbutton {
   align-items: center;
   appearance: none;
@@ -58,7 +65,7 @@ select{
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 18px;
-  top: 50px;
+  max-width: 100%;
 }
 
 .startQuizbutton:focus {
@@ -71,6 +78,59 @@ select{
 }
 
 .startQuizbutton:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+@media screen and (max-width: 340px) {
+  .welcomeMessege {
+    font-size: 24px;
+  }
+}
+
+.logout {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  height: 24px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: fixed;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 16px;
+  max-width: 100%;
+  bottom: 50px;
+  right: 18%;
+}
+
+.logout:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.logout:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.logout:active {
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
 }

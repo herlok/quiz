@@ -2,10 +2,12 @@
   <div class="content">
     <span class="welcomeMessege">Welcome {{username}}</span><br><br>
     <span>Select a category:</span>
-    <select [(ngModel)]="selectedCategoryId">
+    <select [(ngModel)]="selectedCategoryId" class="categoryselect">
       <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
     </select><br>
     <button (click)="quizStart()" class="startQuizbutton">Start quiz</button>
   </div>
+  
+  <button (click)="logout()" class="logout">Logout</button>
 </div>
  
