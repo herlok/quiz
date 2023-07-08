@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ScoreComponent } from './score/score.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    QuizComponent
+    QuizComponent,
+    ScoreComponent
   ],
   imports: [
     BrowserModule,

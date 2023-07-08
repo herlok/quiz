@@ -40,6 +40,7 @@ export class MenuComponent {
     { id: 32, name: 'Entertainment: Cartoon & Animations' }
   ];
   selectedCategoryId: number | null = null;
+  selectedCategoryName: any | null = 'null';
 
   constructor(private router: Router) {}
 
@@ -48,9 +49,10 @@ export class MenuComponent {
   }
 
   quizStart(): void {
-    console.log('categoryid menucomponent ', this.selectedCategoryId)
     if (this.selectedCategoryId) {
       localStorage.setItem('selectedCategoryId', this.selectedCategoryId.toString());
+      this.selectedCategoryName = this.categories[this.selectedCategoryId-9];
+      localStorage.setItem('selectedCategory', JSON.stringify(this.selectedCategoryName))
       this.router.navigate(['/quiz']);
     } else {
       alert('Please choose a category');
@@ -58,5 +60,10 @@ export class MenuComponent {
   }
   logout() {
     this.router.navigate(['/']);
+      let temp = ' ';
+      localStorage.setItem('categories', temp);
+  }
+  score() {
+    this.router.navigate(['/score']);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 interface QuizCategory {
@@ -42,4 +42,6 @@ export class AppComponent {
     console.log(this.name);
     this.router.navigate(['/quiz']);
   }
+
+  
 }

@@ -147,3 +147,9 @@
   .score {
     font-size: 32px;
   }
+  @media screen and (max-width: 550px) {
+    .container {
+      min-height: 0;
+      max-height: 80%;
+    }
+  }

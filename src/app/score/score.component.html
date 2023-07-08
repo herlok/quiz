@@ -1,0 +1,10 @@
+<div class="container">
+    <p style="float:right; padding-right:10px; font-size: 20px;">These are your scores, {{name}}</p><br><br><br>
+    <ul>
+        <ng-container *ngFor="let item of array; let i = index">
+            <li *ngIf="i % 2 === 0">{{ item }}: <span style="float:right">{{ array[i + 1] }}/5</span></li>
+          </ng-container>
+    </ul>
+    <button (click)="backToCategories()" class="backToCategories">Back To Menu</button>
+
+</div>

@@ -18,7 +18,7 @@ interface QuizQuestion {
 export class QuizComponent implements OnInit {
   quizQuestions: QuizQuestion[] = [];
   name: string | null = '';
-  score: number | null = null;
+  score: any | null = null;
 
   constructor(private quizService: QuizService, private router: Router) {}
 
@@ -46,6 +46,11 @@ export class QuizComponent implements OnInit {
 
   onSubmit(): void {
     let score = 0;
+    let arr = [];
+    let category = localStorage.getItem('selectedCategory');
+   
+    
+    const temp = localStorage.getItem('categories');   
 
     this.quizQuestions.forEach(question => {
       question.isCorrect = question.selectedAnswer === question.correct_answer;
@@ -55,7 +60,23 @@ export class QuizComponent implements OnInit {
       }
     });
 
+    if(temp && temp.trim() !== ""){
+      arr = JSON.parse(temp);
+      if(category) {
+        arr.push(JSON.parse(category).name);
+      }
+      arr.push(score);
+      localStorage.setItem('categories', JSON.stringify(arr));
+    }
+    else {
+      if(category) {
+      arr.push(JSON.parse(category).name);
+      }
+      arr.push(score);
+      localStorage.setItem('categories', JSON.stringify(arr));
+    }
     this.score = score;
+    localStorage.setItem('score', this.score);
   }
 
   private shuffleArray(array: any[]): any[] {
