@@ -9,6 +9,11 @@ interface QuizQuestion {
   selectedAnswer: string | null;
   isCorrect: boolean | null;
 }
+interface User {
+  name: string;
+  category: string;
+  score: number;
+}
 
 @Component({
   selector: 'app-quiz',
@@ -19,6 +24,9 @@ export class QuizComponent implements OnInit {
   quizQuestions: QuizQuestion[] = [];
   name: string | null = '';
   score: any | null = null;
+  multiDimArray: User[] = [
+
+  ];
 
   constructor(private quizService: QuizService, private router: Router) {}
 
@@ -45,39 +53,50 @@ export class QuizComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let score = 0;
-    let arr = [];
+    const name = localStorage.getItem('name');
     let category = localStorage.getItem('selectedCategory');
-   
-    
-    const temp = localStorage.getItem('categories');   
-
-    this.quizQuestions.forEach(question => {
-      question.isCorrect = question.selectedAnswer === question.correct_answer;
-
-      if (question.isCorrect) {
-        score++;
-      }
-    });
-
-    if(temp && temp.trim() !== ""){
-      arr = JSON.parse(temp);
-      if(category) {
-        arr.push(JSON.parse(category).name);
-      }
-      arr.push(score);
-      localStorage.setItem('categories', JSON.stringify(arr));
+    if (category) {
+      category = JSON.parse(category).name;
     }
-    else {
-      if(category) {
-      arr.push(JSON.parse(category).name);
+  
+    if (name && category) {
+      let score = 0;
+  
+      this.quizQuestions.forEach(question => {
+        question.isCorrect = question.selectedAnswer === question.correct_answer;
+  
+        if (question.isCorrect) {
+          score++;
+        }
+      });
+  
+      this.score = score;
+      const user: User = { name: name, category: category, score: score };
+  
+      let storedData = localStorage.getItem('categories');
+      let multiDimArray: User[] = [];
+  
+      if (storedData) {
+        multiDimArray = JSON.parse(storedData);
+  
+        const existingIndex = multiDimArray.findIndex(
+          entry => entry.name === user.name && entry.category === user.category
+        );
+  
+        if (existingIndex !== -1 && multiDimArray[existingIndex].score < user.score) {
+          multiDimArray[existingIndex].score = user.score;
+        } else if (existingIndex === -1) {
+          multiDimArray.push(user);
+        }
+      } else {
+        multiDimArray.push(user);
       }
-      arr.push(score);
-      localStorage.setItem('categories', JSON.stringify(arr));
+  
+      localStorage.setItem('categories', JSON.stringify(multiDimArray));
     }
-    this.score = score;
-    localStorage.setItem('score', this.score);
   }
+  
+  
 
   private shuffleArray(array: any[]): any[] {
     for (let i = array.length - 1; i > 0; i--) {

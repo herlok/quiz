@@ -15,9 +15,19 @@
     min-height: 96vh;
     max-height: 100%;
   }
-  li {
+  .userName {
+    float:right; 
+    padding-right:10px; 
+    font-size: 20px;
+  }
+
+  .userOutput {
     padding: 10px;
     font-size: 32px;
+  }
+
+  .userScore {
+    float:right;
   }
   .backToCategories {
     align-items: center;
@@ -68,12 +78,18 @@
   }
 
   @media screen and (max-width: 450px) {
-    li {
+    .userOutput {
       font-size: 24px;
+    }
+    .userName {
+      font-size: 16px;
     }
   }
   @media screen and (max-width: 290px) {
-    li {
+    .userOutput {
       font-size: 18px;
+    }
+    .userName {
+      font-size: 12px;
     }
   }

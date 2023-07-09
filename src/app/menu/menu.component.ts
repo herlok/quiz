@@ -60,8 +60,6 @@ export class MenuComponent {
   }
   logout() {
     this.router.navigate(['/']);
-      let temp = ' ';
-      localStorage.setItem('categories', temp);
   }
   score() {
     this.router.navigate(['/score']);
