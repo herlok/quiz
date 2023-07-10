@@ -74,24 +74,8 @@ export class QuizComponent implements OnInit {
       const user: User = { name: name, category: category, score: score };
   
       let storedData = localStorage.getItem('categories');
-      let multiDimArray: User[] = [];
-  
-      if (storedData) {
-        multiDimArray = JSON.parse(storedData);
-  
-        const existingIndex = multiDimArray.findIndex(
-          entry => entry.name === user.name && entry.category === user.category
-        );
-  
-        if (existingIndex !== -1 && multiDimArray[existingIndex].score < user.score) {
-          multiDimArray[existingIndex].score = user.score;
-        } else if (existingIndex === -1) {
-          multiDimArray.push(user);
-        }
-      } else {
-        multiDimArray.push(user);
-      }
-  
+      let multiDimArray: User[] = (storedData) ? JSON.parse(storedData) : [];
+      multiDimArray.push(user);
       localStorage.setItem('categories', JSON.stringify(multiDimArray));
     }
   }

@@ -34,8 +34,13 @@ export class AppComponent {
   nameSubmit() {
     this.name = (<HTMLInputElement>document.getElementById('name')).value;
     localStorage.setItem('name', this.name);
+    if(this.name !== '')
+    {
     this.router.navigate(['/menu']);
-    console.log(localStorage.getItem('name'));
+    }
+    else{
+      alert('Please enter your name');
+    }
   }
 
   quizStart() {

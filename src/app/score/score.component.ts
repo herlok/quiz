@@ -14,44 +14,36 @@ interface User {
 })
 export class ScoreComponent {
   name: string | null = '';
-  score: any | null = '';
-  quizCategory: any | null = '';
-  temp: any | null = '';
-  array: User[] = [];
-
+  summaryUserScores: { [key: string]: {score: number, quizCount: number} } = {};
+  summaryUserScoresLength: number = 0;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name');
     const storedData = localStorage.getItem('categories');
-  
-    if (storedData) {
-      const allScores: User[] = JSON.parse(storedData);
-  
-      const categoryScores = new Map<string, number>();
-  
-      allScores.forEach(user => {
-        if (user.name === this.name) { // Check if the user matches the currently logged-in user
-          const category = user.category;
-          const score = user.score;
-  
-          if (!categoryScores.has(category) || score > categoryScores.get(category)!) {
-            categoryScores.set(category, score);
-          }
+    const allScores: User[] = (storedData) ? JSON.parse(storedData) : [];
+    
+       
+    allScores.forEach(item => {
+      // Csak annak a scorejait gyujtom ki aki be van lepve
+      if (item.name === this.name) {         
+        if (this.summaryUserScores[item.category]) {
+          this.summaryUserScores[item.category].score += item.score;        
+          this.summaryUserScores[item.category].quizCount++;   
         }
-      });
+        else {
+          this.summaryUserScores[item.category] = {
+            score: item.score,
+            quizCount: 1,
+          };
+        }
+      }
+    });
   
-      this.array = [];
-      categoryScores.forEach((score, category) => {
-        this.array.push({ name: this.name!, category: category, score: score });
-      });
-    }
+    this.summaryUserScoresLength = Object.keys(this.summaryUserScores).length;
+    console.log(this.summaryUserScoresLength);
   }
-  
-  
-  
-  
   
   backToCategories() {
     this.router.navigate(['/menu']);

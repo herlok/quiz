@@ -1,9 +1,9 @@
 <div class="container">
     <p class="userName">These are your scores, {{name}}</p><br><br><br>
  
-    <div *ngFor="let user of array">
+    <div *ngFor="let item of summaryUserScores | keyvalue">
         <li class="userOutput">
-            {{ user.category }} <span class="userScore">{{ user.score }}/5</span>
+            {{ item.key }} <span class="userScore">{{ item.value.score }}/{{ item.value.quizCount * 5 }}</span>
         </li>
     </div>
     <button (click)="backToCategories()" class="backToCategories">Back To Menu</button>
